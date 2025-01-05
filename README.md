@@ -42,8 +42,8 @@ Before you begin, ensure you have installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/url-shortener.git
-   cd url-shortener
+   git clone https://github.com/vib795/tiny-url-code-challenge.git
+   cd tiny-url-code-challenge
    ```
 
 2. Create environment files:
