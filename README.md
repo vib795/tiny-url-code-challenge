@@ -14,29 +14,35 @@ A modern, containerized URL shortener service built with FastAPI, React, and Pos
 ## Technology Stack
 
 ### Backend
-- FastAPI (Python web framework)
-- SQLAlchemy (ORM)
-- PostgreSQL (Database)
-- Uvicorn (ASGI server)
+- [FastAPI:](https://fastapi.tiangolo.com/) A modern, high-performance web framework for building APIs with Python. It provides automatic API documentation, request/response validation, and asynchronous support out of the box, making it ideal for building fast and reliable web services.
+
+- [SQLAlchemy:](https://www.sqlalchemy.org/) A comprehensive database toolkit for Python that provides both a SQL abstraction layer (ORM) and a powerful query builder. As our ORM (Object-Relational Mapper), it allows us to work with database objects in a Pythonic way while maintaining fine-grained control over SQL performance.
+
+- [PostgreSQL:](https://www.postgresql.org/) Our chosen database system, known for its reliability, feature richness, and excellent performance with structured data. PostgreSQL excels at handling concurrent users and complex queries, making it perfect for storing URL mappings and tracking analytics.
+
+- [Uvicorn:](https://www.uvicorn.org/) A lightning-fast ASGI (Asynchronous Server Gateway Interface) server implementation that powers our FastAPI application. It provides the production-grade server capabilities needed to handle concurrent requests efficiently, which is crucial for a URL shortening service that needs to process many redirects quickly.
 
 ### Frontend
-- React 18
-- Vite
-- Tailwind CSS
-- Lucide Icons
+- [React (18):](https://react.dev/) A declarative JavaScript library for building user interfaces, providing powerful features like hooks and component-based architecture.
+
+- [Vite:](https://vite.dev/) A modern frontend build tool that offers lightning-fast development server and optimized production builds.
+
+- [Tailwind CSS:](https://tailwindcss.com/) A highly customizable, low-level CSS framework that enables rapid UI development through utility classes.
+
+- [Lucide Icons:](https://lucide.dev/icons/) A comprehensive icon library that provides consistent, high-quality SVG icons.
 
 ### Infrastructure
-- Docker
+- [Docker](https://www.docker.com/)
 - PostgreSQL 16
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you begin, ensure you have installed:
-- Docker
-- Node.js 18+ (for local development)
-- Python 3.9+ (for local development)
+Before starting, ensure you have:
+- Docker for containerized deployment
+- [Node.js](https://nodejs.org/en) runtime (version 18+) to run the development tools for the React/Vite frontend
+- Python 3.9 or higher for backend development
 
 ### Quick Start with Docker
 
