@@ -18,10 +18,8 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-# Initialize FastAPI app
 app = FastAPI(title="URL Shortener API")
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],  # Vite's default port
@@ -30,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Database configuration
 DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set")
@@ -48,7 +45,6 @@ class URL(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     clicks = Column(Integer, default=0)
 
-# Health check endpoint
 @app.get("/health")
 async def health_check():
     try:
@@ -64,7 +60,6 @@ async def health_check():
             detail=f"Service unhealthy: {str(e)}"
         )
 
-# Pydantic models
 class URLBase(BaseModel):
     url: str
     custom_path: Optional[str] = None

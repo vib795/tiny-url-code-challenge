@@ -1,16 +1,14 @@
-# backend/init_db.py
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import time
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 def get_db_config():
     return {
-        'host': 'postgres',  # This is the service name in docker-compose
+        'host': 'postgres',
         'admin_user': os.getenv('POSTGRES_USER'),
         'admin_password': os.getenv('POSTGRES_PASSWORD'),
         'admin_db': os.getenv('POSTGRES_DB'),
@@ -23,7 +21,6 @@ def wait_for_db():
     config = get_db_config()
     while True:
         try:
-            # Connect to default postgres database first
             conn = psycopg2.connect(
                 dbname=config['admin_db'],
                 user=config['admin_user'],
@@ -33,15 +30,12 @@ def wait_for_db():
             conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
             cursor = conn.cursor()
             
-            # Check if our database exists
             cursor.execute(f"SELECT 1 FROM pg_database WHERE datname='{config['app_db']}'")
             if cursor.fetchone() is None:
-                # Create database if it doesn't exist
                 print(f"Creating database {config['app_db']}...")
                 cursor.execute(f"CREATE DATABASE {config['app_db']}")
                 print("Database created!")
             
-            # Now create user and grant privileges
             cursor.execute(f"SELECT 1 FROM pg_roles WHERE rolname='{config['app_user']}'")
             if cursor.fetchone() is None:
                 print(f"Creating user {config['app_user']}...")
@@ -51,7 +45,7 @@ def wait_for_db():
             # Grant privileges
             cursor.execute(f"GRANT ALL PRIVILEGES ON DATABASE {config['app_db']} TO {config['app_user']}")
             
-            # Connect to our database to set up schema privileges
+            # Connect to database to set up schema privileges
             conn.close()
             conn = psycopg2.connect(
                 dbname=config['app_db'],
