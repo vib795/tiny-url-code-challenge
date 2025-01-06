@@ -1,4 +1,5 @@
 # URL Shortener Service
+![](demo.gif)<br/>
 
 A modern, containerized URL shortener service built with FastAPI, React, and PostgreSQL. This application allows users to create shortened URLs with optional custom paths and tracks usage statistics.
 
